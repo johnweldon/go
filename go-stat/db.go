@@ -1,44 +1,43 @@
 package go_stat
 
+/*
+
+/projects/<name>/
+
+GET: Name, Count of Records, Days, Tags, BillableHours, TotalHours
+PUT: Replace record 
+POST: Update Project
+DELETE: 
+
+*/
+
 import (
-	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
-	"log"
+	"github.com/johnweldon/tcalc/timecalc"
+	"net/http"
 )
 
-type stat struct {
-	DB *sql.DB
+func logNote(note string) {
+	var p = timecalc.Project{}
+	p.AddTime("", "1209", "1209", "", note, "")
 }
 
-func check_error(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
+type NoteHandler struct{}
+type EventHandler struct{}
+type ProjectHandler struct{}
+
+func (h ProjectHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	var rstr = r.URL.Path
+	w.Write([]byte(rstr))
+	return
+}
+func (h NoteHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	var rstr = r.URL.Path
+	w.Write([]byte(rstr))
+	return
 }
 
-func (s *stat) init() {
-	var err error
-	s.DB, err = sql.Open("sqlite3", "./foo.db")
-	check_error(err)
-}
-
-func (s *stat) exec(sql string) {
-	_, err := s.DB.Exec(sql)
-	check_error(err)
-}
-
-func (s *stat) cleanup() {
-	s.DB.Close()
-}
-
-func Open() {
-
-	var s = stat{}
-	s.init()
-	defer s.cleanup()
-
-	s.exec(`CREATE TABLE IF NOT EXISTS main (
-                id integer not null primary key,
-                name text )`)
-
+func (h EventHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	var rstr = r.URL.Path
+	w.Write([]byte(rstr))
+	return
 }
