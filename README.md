@@ -1,4 +1,1 @@
-go
-==
-
-golang root repo
+Root project for Go utilities, libraries, etc.
