@@ -1,3 +1,6 @@
+/*
+Old code, preserved for interest only
+*/
 package main
 
 import (
