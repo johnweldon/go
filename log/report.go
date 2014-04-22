@@ -1,6 +1,8 @@
 package log
 
-import ()
+import (
+	"fmt"
+)
 
 type Report struct {
 	ReportDate     string
@@ -8,4 +10,8 @@ type Report struct {
 	Notes          []string
 	UnmatchedLines []string
 	TimeRecords    []TimeRecord
+}
+
+func (r Report) String() string {
+	return fmt.Sprintf("Report (%d Projects)\n%s\n", len(r.Projects), r.Projects)
 }
