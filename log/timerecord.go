@@ -2,7 +2,7 @@ package log
 
 import ()
 
-type TimeRecord struct {
+type LegacyTimeRecord struct {
 	BeginTime            string
 	EndTime              string
 	Fraction             float32
