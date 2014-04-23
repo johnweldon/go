@@ -64,20 +64,30 @@ func (ws *WebScrape) Scrape(uri string) (shavings ScrapeResult, err error) {
 func HasClass(class string) ScrapePredicate {
 	return HasAttrVal("class", class)
 }
+
 func HasAttrVal(name, value string) ScrapePredicate {
 	return func(n *html.Node) bool {
-		if n != nil {
-			for _, attr := range n.Attr {
-				if attr.Key == name {
-					for _, val := range strings.Split(attr.Val, " ") {
-						if val == value {
-							return true
-						}
+		pass := false
+		attributeAction(n,
+			func(a html.Attribute) bool { return a.Key == name },
+			func(a html.Attribute) {
+				for _, val := range strings.Split(a.Val, " ") {
+					if val == value {
+						pass = true
 					}
 				}
-			}
-		}
-		return false
+			})
+		return pass
+	}
+}
+
+func HasAttr(name string) ScrapePredicate {
+	return func(n *html.Node) bool {
+		pass := false
+		attributeAction(n,
+			func(a html.Attribute) bool { return !pass && a.Key == name },
+			func(a html.Attribute) { pass = true })
+		return pass
 	}
 }
 
@@ -95,6 +105,16 @@ func TextChildren(n *html.Node) (string, error) {
 		}
 	}
 	return ret, nil
+}
+
+func AttrValue(name string) ScrapeAction {
+	return func(n *html.Node) (string, error) {
+		var r string
+		attributeAction(n,
+			func(a html.Attribute) bool { return a.Key == name },
+			func(a html.Attribute) { r = a.Val })
+		return r, nil
+	}
 }
 
 func defaultWebScrapeAction(n *html.Node) (string, error) {
@@ -131,4 +151,14 @@ func any(predicates []ScrapePredicate, match *html.Node) bool {
 		}
 	}
 	return false
+}
+
+func attributeAction(n *html.Node, pred func(html.Attribute) bool, fn func(html.Attribute)) {
+	if n != nil {
+		for _, attr := range n.Attr {
+			if pred(attr) {
+				fn(attr)
+			}
+		}
+	}
 }
