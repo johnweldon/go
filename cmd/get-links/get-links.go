@@ -53,7 +53,7 @@ func main() {
 	for _, root := range flag.Args() {
 		r, e := s.Crawl(root)
 		if e != nil {
-			fmt.Fprintf(os.Stderr, "Error crawling '%s': '%v'\n", e)
+			fmt.Fprintf(os.Stderr, "Error crawling '%s': '%v'\n", root, e)
 		}
 		fmt.Fprintf(os.Stdout, "%s\n", r)
 	}
