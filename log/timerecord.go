@@ -1,16 +1,13 @@
 package log
 
-import ()
+import (
+	"time"
+)
 
-type LegacyTimeRecord struct {
-	BeginTime            string
-	EndTime              string
-	Fraction             float32
-	Notes                string
-	ProjectName          string
-	TimeSpanMinutes      float32
-	TimeSpanQuarterHours float32
-	TimeSpanHours        float32
-	BillableHours        float32
-	ReportLine           string
+type TimeRecord struct {
+	Begin    time.Time
+	Duration time.Duration
+	Project  string
+	Notes    string
+	Tags     []string
 }
