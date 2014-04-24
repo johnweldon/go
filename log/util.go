@@ -22,9 +22,10 @@ func ConvertLegacyRecords(r *LegacyReport) (records []TimeRecord, projects []Pro
 	working := map[string]Project{}
 	if r != nil {
 		for _, v := range r.TimeRecords {
-			records = append(records, convertTimeRecord(v))
-			if _, ok := working[v.ProjectName]; !ok {
-				working[v.ProjectName] = NewProject(v.ProjectName)
+			converted := convertTimeRecord(v)
+			records = append(records, converted)
+			if _, ok := working[converted.Project]; !ok {
+				working[converted.Project] = NewProject(converted.Project)
 			}
 		}
 	}
@@ -44,12 +45,12 @@ func convertTimeRecord(r LegacyTimeRecord) TimeRecord {
 	if err != nil {
 		end = time.Now()
 	}
-	duration := end.Sub(begin)
-	duration = time.Duration(float64(duration) * float64(r.Fraction))
 	tr.Begin = begin
-	tr.Duration = duration
-	tr.Project = r.ProjectName
+	tr.SetEndPartial(end, float64(r.Fraction))
 	tr.Notes = r.Notes
 	tr.Tags = strings.Split(r.ProjectName, " ")
+	if len(tr.Tags) > 0 {
+		tr.Project = tr.Tags[0]
+	}
 	return tr
 }

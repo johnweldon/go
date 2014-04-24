@@ -5,7 +5,7 @@ import (
 )
 
 type Project struct {
-	id   util.UUID
+	Id   util.UUID
 	Name string
 }
 
