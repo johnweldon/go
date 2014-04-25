@@ -149,7 +149,7 @@ func search(conn *ldap.Conn, search string) {
 func connect() *ldap.Conn {
 	conn := connectFn(config.UseTLS)()
 	if err := conn.Bind(config.Username, config.Password); err != nil {
-		log.Fatal(err)
+		log.Fatal("BIND: ", err)
 	}
 	return conn
 }
@@ -165,14 +165,14 @@ func connectTLS() *ldap.Conn {
 	tlsConfig := &tls.Config{InsecureSkipVerify: true}
 	conn, err := ldap.DialTLS("tcp", fmt.Sprintf("%s:%d", config.Hostname, config.Port), tlsConfig)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("CONNECT TLS: ", err)
 	}
 	return conn
 }
 func connectPlain() *ldap.Conn {
 	conn, err := ldap.Dial("tcp", fmt.Sprintf("%s:%d", config.Hostname, config.Port))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("CONNECT PLAIN: ", err)
 	}
 	return conn
 }
