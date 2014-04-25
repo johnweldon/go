@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/tls"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -179,6 +180,8 @@ func connectPlain() *ldap.Conn {
 
 func display(key string) func(string) string {
 	switch key {
+	case "jpegPhoto":
+		return displayBinaryFn
 	case "accountExpires", "lastLogon", "lockoutTime", "lastLogonTimestamp", "pwdLastSet", "badPasswordTime":
 		return displayTimestampFn
 	case "whenCreated":
@@ -186,6 +189,16 @@ func display(key string) func(string) string {
 	default:
 		return displayStringFn
 	}
+}
+
+func displayBinaryFn(val string) string {
+	var buf []byte
+	if len(val) > 0x1f {
+		buf = []byte(val)[:0x1f]
+	} else {
+		buf = []byte(val)
+	}
+	return fmt.Sprintf("<binary %d bytes> '%s'", len(val), hex.EncodeToString(buf))
 }
 
 func displayStringFn(val string) string {
