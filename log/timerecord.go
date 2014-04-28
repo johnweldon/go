@@ -8,7 +8,7 @@ import (
 )
 
 type TimeRecord struct {
-	Id             util.UUID
+	Id             util.UUID `bson:"_id"`
 	Begin          time.Time
 	Duration       time.Duration
 	DurationString string
@@ -33,4 +33,3 @@ func (r *TimeRecord) SetEndPartial(t time.Time, fraction float64) error {
 func (r *TimeRecord) SetEnd(t time.Time) error {
 	return r.SetEndPartial(t, 1.0)
 }
-

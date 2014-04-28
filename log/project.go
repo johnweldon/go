@@ -5,7 +5,7 @@ import (
 )
 
 type Project struct {
-	Id   util.UUID
+	Id   util.UUID `bson:"_id"`
 	Name string
 }
 

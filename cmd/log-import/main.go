@@ -11,13 +11,33 @@ import (
 )
 
 var importPath string
+var exportPath string
+var serverlist string
 
 func init() {
-	flag.StringVar(&importPath, "import", "", "path to the json formatted import file")
+	flag.StringVar(&importPath, "import", "", "path to the json formatted legacy format input file")
+	flag.StringVar(&exportPath, "export", "imported.json", "path to the json formatted output file")
+	flag.StringVar(&serverlist, "serverlist", "localhost", "mongo serverlist")
 }
 
 func main() {
 	flag.Parse()
+	records, projects := convert()
+	writeFile(records, projects)
+	writeMongo(records)
+}
+
+func writeMongo(records []logf.TimeRecord) {
+	db := logf.NewDB(serverlist)
+	err := db.SaveRecords(records)
+	if err != nil {
+		panic(err)
+	}
+	readin := db.GetRecords()
+	log.Printf("Imported %d records\n", len(readin))
+}
+
+func convert() ([]logf.TimeRecord, []logf.Project) {
 	reader, err := os.Open(importPath)
 	if err != nil {
 		log.Fatal(err)
@@ -28,8 +48,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	records, projects := logf.ConvertLegacyRecords(report)
+	return logf.ConvertLegacyRecords(report)
+}
 
+func writeFile(records []logf.TimeRecord, projects []logf.Project) {
 	b, err := json.Marshal(struct {
 		Records  []logf.TimeRecord
 		Projects []logf.Project
@@ -44,7 +66,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	out, err := os.Create("imported.json")
+	out, err := os.Create(exportPath)
 	if err != nil {
 		log.Fatal(err)
 	}
