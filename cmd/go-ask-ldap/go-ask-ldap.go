@@ -180,7 +180,7 @@ func connectPlain() *ldap.Conn {
 
 func display(key string) func(string) string {
 	switch key {
-	case "jpegPhoto":
+	case "jpegPhoto", "objectGUID", "objectSid":
 		return displayBinaryFn
 	case "accountExpires", "lastLogon", "lockoutTime", "lastLogonTimestamp", "pwdLastSet", "badPasswordTime":
 		return displayTimestampFn
