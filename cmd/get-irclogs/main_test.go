@@ -5,5 +5,4 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	Main([]string{})
 }

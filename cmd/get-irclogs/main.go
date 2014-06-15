@@ -27,7 +27,7 @@ type generateArgs struct {
 
 // Main is a testable delegate of main
 func Main(args []string) {
-	begin, _ := time.Parse("20060102", "20040101")
+	begin, _ := time.Parse("20060102", "20100101")
 	genArgs := generateArgs{
 		BaseURL: "http://irclogs.ubuntu.com",
 		Target:  "#juju-dev.txt",
@@ -52,7 +52,7 @@ func generateDates(args generateArgs) {
 		urls <- downloadData{URL: date.Format(args.BaseURL + "/2006/01/02/" + args.Target), File: date.Format("2006-01-02-" + args.Target[1:])}
 		date = date.AddDate(0, 0, 1)
 		select {
-		case <-time.After(500 * time.Millisecond):
+		case <-time.After(100 * time.Millisecond):
 			continue
 		}
 	}
