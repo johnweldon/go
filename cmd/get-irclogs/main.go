@@ -33,6 +33,10 @@ func Main(args []string) {
 		Target:  "#juju-dev.txt",
 		Begin:   begin,
 	}
+	if len(args) > 0 {
+		genArgs.Target = args[0]
+	}
+	fmt.Fprintf(os.Stdout, "Getting %+v\n", genArgs)
 	wg[0].Add(2)
 	go generateDates(genArgs)
 	go consumeURLs()
