@@ -5,7 +5,7 @@ install:
     - go get code.google.com/p/go.crypto/bcrypt
     - go get code.google.com/p/go.net/html
     - go get github.com/golang/lint
-    - go get github.com/johnweldon/ldap
+    - go get gopkg.in/ldap.v0
     - go get gopkg.in/check.v1
     - go get gopkg.in/mgo.v2
     - go get launchpad.net/goyaml
