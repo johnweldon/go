@@ -1,13 +1,23 @@
 package log
 
 import (
+	"encoding/csv"
 	"encoding/json"
 	"io"
 	"strings"
 	"time"
 )
 
-var LegacyTimeFormat string = "2006-01-02T15:04:05"
+const (
+	LegacyTimeFormat string = "2006-01-02T15:04:05"
+
+	CSVDateFormat   string = "1/2/2006"
+	CSVTimeFormat   string = "03:04:05 PM"
+	CSVDateIndex    int    = 0
+	CSVBeginIndex   int    = 1
+	CSVEndIndex     int    = 2
+	CSVMessageIndex int    = 4
+)
 
 func ImportReportFromJson(r io.Reader) (*LegacyReport, error) {
 	var report LegacyReport
@@ -53,4 +63,39 @@ func convertTimeRecord(r LegacyTimeRecord) TimeRecord {
 		tr.Project = tr.Tags[0]
 	}
 	return tr
+}
+
+func ConvertCSVRecords(r io.Reader) ([]TimeRecord, error) {
+	res := []TimeRecord{}
+	csvReader := csv.NewReader(r)
+	records, err := csvReader.ReadAll()
+	if err != nil {
+		return res, err
+	}
+	for _, record := range records {
+		if len(record) < 5 {
+			continue
+		}
+		date, err := time.ParseInLocation(CSVDateFormat, record[CSVDateIndex], time.Local)
+		if err != nil {
+			continue
+		}
+		begin, err := time.ParseInLocation(CSVTimeFormat, record[CSVBeginIndex], time.Local)
+		if err != nil {
+			continue
+		}
+		end, err := time.ParseInLocation(CSVTimeFormat, record[CSVEndIndex], time.Local)
+		if err != nil {
+			continue
+		}
+		message := record[CSVMessageIndex]
+		rec := NewTimeRecord()
+		rec.Begin = begin
+		rec.Notes = message
+		rec.SetEnd(end)
+		rec.SetDate(date)
+
+		res = append(res, rec)
+	}
+	return res, nil
 }
