@@ -65,7 +65,7 @@ func convertTimeRecord(r LegacyTimeRecord) TimeRecord {
 	return tr
 }
 
-func ConvertCSVRecords(r io.Reader) ([]TimeRecord, error) {
+func ConvertCSVRecords(r io.Reader, project string) ([]TimeRecord, error) {
 	res := []TimeRecord{}
 	csvReader := csv.NewReader(r)
 	records, err := csvReader.ReadAll()
@@ -92,6 +92,7 @@ func ConvertCSVRecords(r io.Reader) ([]TimeRecord, error) {
 		rec := NewTimeRecord()
 		rec.Begin = begin
 		rec.Notes = message
+		rec.Project = project
 		rec.SetEnd(end)
 		rec.SetDate(date)
 

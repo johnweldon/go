@@ -10,14 +10,18 @@ import (
 	logf "github.com/johnweldon/go/log"
 )
 
-var importPath string
-var exportPath string
-var serverlist string
+var (
+	importPath string
+	exportPath string
+	serverlist string
+	csv        bool
+)
 
 func init() {
 	flag.StringVar(&importPath, "import", "", "path to the json formatted legacy format input file")
 	flag.StringVar(&exportPath, "export", "imported.json", "path to the json formatted output file")
 	flag.StringVar(&serverlist, "serverlist", "localhost", "mongo serverlist")
+	flag.BoolVar(&csv, "csv", false, "expect csv input rather than json")
 }
 
 func main() {
@@ -43,12 +47,20 @@ func convert() ([]logf.TimeRecord, []logf.Project) {
 		log.Fatal(err)
 	}
 
-	report, err := logf.ImportReportFromJson(reader)
-	if err != nil {
-		log.Fatal(err)
-	}
+	if csv {
+		records, err := logf.ConvertCSVRecords(reader, "")
+		if err != nil {
+			log.Fatal(err)
+		}
+		return records, []logf.Project{logf.Project{}}
+	} else {
+		report, err := logf.ImportReportFromJson(reader)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	return logf.ConvertLegacyRecords(report)
+		return logf.ConvertLegacyRecords(report)
+	}
 }
 
 func writeFile(records []logf.TimeRecord, projects []logf.Project) {
