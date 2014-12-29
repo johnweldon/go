@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	logf "github.com/johnweldon/go/log"
+	jlog "github.com/johnweldon/go/log"
 )
 
 var (
@@ -31,8 +31,8 @@ func main() {
 	writeMongo(records)
 }
 
-func writeMongo(records []logf.TimeRecord) {
-	db := logf.NewDB(serverlist)
+func writeMongo(records []jlog.TimeRecord) {
+	db := jlog.NewMongoDB(serverlist)
 	err := db.SaveRecords(records)
 	if err != nil {
 		panic(err)
@@ -41,32 +41,32 @@ func writeMongo(records []logf.TimeRecord) {
 	log.Printf("Imported %d records\n", len(readin))
 }
 
-func convert() ([]logf.TimeRecord, []logf.Project) {
+func convert() ([]jlog.TimeRecord, []jlog.Project) {
 	reader, err := os.Open(importPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	if csv {
-		records, err := logf.ConvertCSVRecords(reader, "")
+		records, err := jlog.ConvertCSVRecords(reader, "")
 		if err != nil {
 			log.Fatal(err)
 		}
-		return records, []logf.Project{logf.Project{}}
+		return records, []jlog.Project{jlog.Project{}}
 	} else {
-		report, err := logf.ImportReportFromJson(reader)
+		report, err := jlog.ImportReportFromJson(reader)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		return logf.ConvertLegacyRecords(report)
+		return jlog.ConvertLegacyRecords(report)
 	}
 }
 
-func writeFile(records []logf.TimeRecord, projects []logf.Project) {
+func writeFile(records []jlog.TimeRecord, projects []jlog.Project) {
 	b, err := json.Marshal(struct {
-		Records  []logf.TimeRecord
-		Projects []logf.Project
+		Records  []jlog.TimeRecord
+		Projects []jlog.Project
 	}{records, projects})
 	if err != nil {
 		log.Fatal(err)

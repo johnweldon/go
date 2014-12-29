@@ -10,15 +10,15 @@ const (
 	timerecords string = "timerecords"
 )
 
-type DB struct {
+type MongoDB struct {
 	serverlist string
 }
 
-func NewDB(serverlist string) *DB {
-	return &DB{serverlist}
+func NewMongoDB(serverlist string) *MongoDB {
+	return &MongoDB{serverlist}
 }
 
-func (d *DB) GetRecords() []TimeRecord {
+func (d *MongoDB) GetRecords() []TimeRecord {
 	session, err := mgo.Dial(d.serverlist)
 	if err != nil {
 		panic(err)
@@ -34,7 +34,7 @@ func (d *DB) GetRecords() []TimeRecord {
 	return result
 }
 
-func (d *DB) SaveRecords(records []TimeRecord) error {
+func (d *MongoDB) SaveRecords(records []TimeRecord) error {
 	session, err := mgo.Dial(d.serverlist)
 	if err != nil {
 		panic(err)
