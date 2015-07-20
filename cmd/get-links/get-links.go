@@ -22,7 +22,7 @@ func (l Links) String() string {
 }
 
 type S struct {
-	web.WebScrape
+	web.Scrape
 }
 
 func NewS() *S {
@@ -34,7 +34,7 @@ func NewS() *S {
 
 func (s *S) Crawl(url string) (Links, error) {
 	links := Links{url, []string{}}
-	r, e := s.Scrape(url)
+	r, e := s.Get(url)
 	if e != nil {
 		return Links{}, e
 	}

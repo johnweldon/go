@@ -14,13 +14,13 @@ func ElementWithClass(el, class string) []Predicate {
 }
 
 func Element(name string) Predicate {
-	name_lower := strings.ToLower(name)
-	return func(n *html.Node) bool { return n.Type == html.ElementNode && n.Data == name_lower }
+	nameLower := strings.ToLower(name)
+	return func(n *html.Node) bool { return n.Type == html.ElementNode && n.Data == nameLower }
 }
 
 func Class(name string) Predicate {
-	name_lower := strings.ToLower(name)
-	return func(n *html.Node) bool { return hasClass(name_lower, n.Attr) }
+	nameLower := strings.ToLower(name)
+	return func(n *html.Node) bool { return hasClass(nameLower, n.Attr) }
 }
 
 func hasClass(name string, attrs []html.Attribute) bool {

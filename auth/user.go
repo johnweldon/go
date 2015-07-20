@@ -1,12 +1,12 @@
 package auth
 
 type AuthenticatedUser interface {
-	Id() string
+	ID() string
 	IsAuthenticated() bool
 	Authenticate(password string) bool
 }
 
-type AuthUser struct {
+type authUser struct {
 	doc           authUserDoc
 	authenticated bool
 }
@@ -16,8 +16,8 @@ type authUserDoc struct {
 	hash []byte
 }
 
-var _ AuthenticatedUser = (*AuthUser)(nil)
+var _ AuthenticatedUser = (*authUser)(nil)
 
-func (a AuthUser) Id() string                        { return a.doc.id }
-func (a AuthUser) IsAuthenticated() bool             { return a.authenticated }
-func (a AuthUser) Authenticate(password string) bool { return TestPassword(password, a.doc.hash) }
+func (a authUser) ID() string                        { return a.doc.id }
+func (a authUser) IsAuthenticated() bool             { return a.authenticated }
+func (a authUser) Authenticate(password string) bool { return TestPassword(password, a.doc.hash) }

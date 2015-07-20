@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	CRLF  []byte = []byte("\r\n")
-	BEGIN []byte = []byte("BEGIN:VCARD\r\nVERSION:4.0\r\n")
-	END   []byte = []byte("END:VCARD\r\n")
+	CRLF  = []byte("\r\n")
+	BEGIN = []byte("BEGIN:VCARD\r\nVERSION:4.0\r\n")
+	END   = []byte("END:VCARD\r\n")
 )
 
 var inFile string

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var jsonStr string = `{
+var jsonStr = `{
     "ReportDate": "2014-04-21",
     "Projects": {
         "PROJECT": {
@@ -78,8 +78,8 @@ var jsonStr string = `{
     ]
 }`
 
-func TestImportReportFromJson(t *testing.T) {
-	report, err := ImportReportFromJson(strings.NewReader(jsonStr))
+func TestImportReportFromJSON(t *testing.T) {
+	report, err := ImportReportFromJSON(strings.NewReader(jsonStr))
 	if err != nil {
 		t.Error(err)
 	}

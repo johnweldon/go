@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-var testResponse string = "<http><head></head><body><div>Raw Text</div><p class='test3'>Paragraph</p><span>span</span><a href='fakeurl' /><a href='fakeurl2'></a></body></http>"
+var testResponse = "<http><head></head><body><div>Raw Text</div><p class='test3'>Paragraph</p><span>span</span><a href='fakeurl' /><a href='fakeurl2'></a></body></http>"
 
 type testServerHandler struct{}
 
@@ -22,10 +22,10 @@ func TestScrape(t *testing.T) {
 	}
 	defer l.Close()
 
-	scraper := NewWebScraper()
+	scraper := NewScraper()
 	addr := "http://" + l.Addr().String() + "/blah/blah"
 	t.Logf("Addr '%s'\n", addr)
-	s, e := scraper.Scrape(addr)
+	s, e := scraper.Get(addr)
 	if e != nil {
 		t.Error(e)
 	}
@@ -47,12 +47,12 @@ func TestCustomScrape(t *testing.T) {
 	}
 	defer l.Close()
 
-	scraper := NewWebScraper()
+	scraper := NewScraper()
 	scraper.ScrapePredicates = []ScrapePredicate{HasClass("test3")}
 	scraper.ScrapeAction = TextChildren
 	addr := "http://" + l.Addr().String() + "/blah/blah"
 	t.Logf("Addr '%s'\n", addr)
-	s, e := scraper.Scrape(addr)
+	s, e := scraper.Get(addr)
 
 	if e != nil {
 		t.Error(e)
@@ -75,12 +75,12 @@ func TestGetAttr(t *testing.T) {
 	}
 	defer l.Close()
 
-	scraper := NewWebScraper()
+	scraper := NewScraper()
 	scraper.ScrapePredicates = []ScrapePredicate{HasAttr("href")}
 	scraper.ScrapeAction = AttrValue("href")
 	addr := "http://" + l.Addr().String() + "/blah/blah"
 	t.Logf("Addr '%s'\n", addr)
-	s, e := scraper.Scrape(addr)
+	s, e := scraper.Get(addr)
 
 	if e != nil {
 		t.Error(e)

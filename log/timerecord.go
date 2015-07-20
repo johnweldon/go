@@ -8,7 +8,7 @@ import (
 )
 
 type TimeRecord struct {
-	Id             util.UUID `bson:"_id"`
+	ID             util.UUID `bson:"_id"`
 	Begin          time.Time
 	Duration       time.Duration
 	DurationString string

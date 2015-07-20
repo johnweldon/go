@@ -12,7 +12,7 @@ import (
 	"github.com/johnweldon/go/util/juju"
 )
 
-var defaultVar string = "user"
+var defaultVar = "user"
 
 func main() {
 	flag.Parse()

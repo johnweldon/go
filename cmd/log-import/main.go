@@ -53,14 +53,14 @@ func convert() ([]jlog.TimeRecord, []jlog.Project) {
 			log.Fatal(err)
 		}
 		return records, []jlog.Project{jlog.Project{}}
-	} else {
-		report, err := jlog.ImportReportFromJson(reader)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		return jlog.ConvertLegacyRecords(report)
 	}
+
+	report, err := jlog.ImportReportFromJSON(reader)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return jlog.ConvertLegacyRecords(report)
 }
 
 func writeFile(records []jlog.TimeRecord, projects []jlog.Project) {

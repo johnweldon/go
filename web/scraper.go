@@ -13,19 +13,19 @@ type ScrapeResult interface {
 }
 
 type Scraper interface {
-	Scrape(uri string) (shavings ScrapeResult, err error)
+	Get(uri string) (shavings ScrapeResult, err error)
 }
 
 type ScrapePredicate func(*html.Node) bool
 type ScrapeAction func(*html.Node) (string, error)
 
-type WebScrape struct {
+type Scrape struct {
 	ScrapePredicates []ScrapePredicate
 	ScrapeAction     ScrapeAction
 }
 
-func NewWebScraper() *WebScrape {
-	return &WebScrape{
+func NewScraper() *Scrape {
+	return &Scrape{
 		ScrapePredicates: []ScrapePredicate{
 			defaultWebScrapePredicate,
 		},
@@ -33,7 +33,7 @@ func NewWebScraper() *WebScrape {
 	}
 }
 
-func (ws *WebScrape) Scrape(uri string) (shavings ScrapeResult, err error) {
+func (ws *Scrape) Get(uri string) (shavings ScrapeResult, err error) {
 	result := &webScrapeResult{}
 	res, err := http.Get(uri)
 	if err != nil {

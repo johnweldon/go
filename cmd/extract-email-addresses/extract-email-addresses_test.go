@@ -9,8 +9,10 @@ import (
 	"testing"
 )
 
-var message string = "From: test@example.com\r\nTo: fred@example.com\r\nSubject: Test Message\r\n\r\nBody message\r\n"
-var vcf string = "BEGIN:VCARD\r\nVERSION:4.0\r\nFN:\r\nEMAIL;TYPE=INTERNET:fred@example.com\r\nEND:VCARD\r\nBEGIN:VCARD\r\nVERSION:4.0\r\nFN:\r\nEMAIL;TYPE=INTERNET:test@example.com\r\nEND:VCARD\r\n"
+var (
+	message = "From: test@example.com\r\nTo: fred@example.com\r\nSubject: Test Message\r\n\r\nBody message\r\n"
+	vcf     = "BEGIN:VCARD\r\nVERSION:4.0\r\nFN:\r\nEMAIL;TYPE=INTERNET:fred@example.com\r\nEND:VCARD\r\nBEGIN:VCARD\r\nVERSION:4.0\r\nFN:\r\nEMAIL;TYPE=INTERNET:test@example.com\r\nEND:VCARD\r\n"
+)
 
 func TestExtractMessage(t *testing.T) {
 	msg := getMessage(t)

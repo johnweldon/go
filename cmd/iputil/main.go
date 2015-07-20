@@ -41,7 +41,7 @@ func CommonPrefixLength(lhs, rhs net.IP) (uint8, bool) {
 		} else {
 			for i := uint8(7); i != 0; i-- {
 				if l[bx]>>i == r[bx]>>i {
-					c += 1
+					c++
 				} else {
 					return uint8(c), true
 				}

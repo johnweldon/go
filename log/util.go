@@ -19,7 +19,7 @@ const (
 	CSVMessageIndex int    = 4
 )
 
-func ImportReportFromJson(r io.Reader) (*LegacyReport, error) {
+func ImportReportFromJSON(r io.Reader) (*LegacyReport, error) {
 	var report LegacyReport
 	decoder := json.NewDecoder(r)
 	if err := decoder.Decode(&report); err != nil {

@@ -21,7 +21,7 @@ func LoadUserRepo(users map[string][]byte) UserRepo {
 
 func (r DefaultUserRepo) User(username string) (AuthenticatedUser, bool) {
 	if hash, ok := r.users[username]; ok {
-		return AuthUser{doc: authUserDoc{id: username, hash: hash}}, true
+		return authUser{doc: authUserDoc{id: username, hash: hash}}, true
 	}
 	return nil, false
 }

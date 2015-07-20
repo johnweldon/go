@@ -1,19 +1,19 @@
 package quassel
 
-type QuasselUser struct {
-	Id       int
+type User struct {
+	ID       int
 	Username string
 	Password string
 }
 
 type Sender struct {
-	Id   int
+	ID   int
 	Name string
 }
 
 type Network struct {
-	Id                      int
-	UserId                  int
+	ID                      int
+	UserID                  int
 	Name                    string
 	Identity                int
 	EncodingCodec           string
@@ -40,26 +40,26 @@ type Network struct {
 }
 
 type Buffer struct {
-	Id                  int
-	UserId              int
-	GroupId             int
-	NetworkId           int
+	ID                  int
+	UserID              int
+	GroupID             int
+	NetworkID           int
 	Name                string
 	CanonicalName       string
 	Type                int
-	LastSeenMessageId   int
-	MarkerLineMessageId int
+	LastSeenMessageID   int
+	MarkerLineMessageID int
 	Key                 string
 	Joined              bool
 }
 
 type Backlog struct {
-	MessageId int
+	MessageID int
 	Time      int
-	BufferId  int
+	BufferID  int
 	Type      int
 	Flags     int
-	SenderId  int
+	SenderID  int
 	Message   string
 }
 
@@ -69,9 +69,9 @@ type CoreInfo struct {
 }
 
 type IRCServer struct {
-	ServerId   int
-	UserId     int
-	NetworkId  int
+	ServerID   int
+	UserID     int
+	NetworkID  int
 	Hostname   string
 	Port       int
 	Password   string
@@ -86,14 +86,14 @@ type IRCServer struct {
 }
 
 type UserSetting struct {
-	UserId       int
+	UserID       int
 	SettingName  string
 	SettingValue []byte
 }
 
 type Identity struct {
-	Id                      int
-	UserId                  int
+	ID                      int
+	UserID                  int
 	Name                    string
 	RealName                string
 	AwayNick                string
@@ -116,7 +116,7 @@ type Identity struct {
 }
 
 type IdentityNick struct {
-	Id         int
-	IdentityId int
+	ID         int
+	IdentityID int
 	Nick       string
 }

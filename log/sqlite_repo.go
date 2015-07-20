@@ -1,4 +1,5 @@
 // +build !go1.5
+
 package log
 
 import (
@@ -6,8 +7,6 @@ import (
 	"log"
 	"strings"
 	"time"
-
-	_ "github.com/mattn/go-sqlite3"
 
 	"github.com/johnweldon/go/util"
 )
@@ -81,7 +80,7 @@ func (d *RelDB) GetRecords() []TimeRecord {
 
 		tags := strings.Split(tagslist, ",")
 		result = append(result, TimeRecord{
-			Id:             util.UUID(id),
+			ID:             util.UUID(id),
 			Begin:          btime,
 			Duration:       time.Duration(duration),
 			DurationString: durationstring,
@@ -130,7 +129,7 @@ func (d *RelDB) SaveRecords(records []TimeRecord) error {
 		if err != nil {
 			return err
 		}
-		_, err = insRec.Exec(string(record.Id), record.Begin.Format(time.RFC3339), record.Duration, record.DurationString, record.Project, record.Notes)
+		_, err = insRec.Exec(string(record.ID), record.Begin.Format(time.RFC3339), record.Duration, record.DurationString, record.Project, record.Notes)
 		if err != nil {
 			return err
 		}
@@ -139,7 +138,7 @@ func (d *RelDB) SaveRecords(records []TimeRecord) error {
 			if err != nil {
 				return err
 			}
-			_, err = insRecTag.Exec(string(record.Id), tag)
+			_, err = insRecTag.Exec(string(record.ID), tag)
 			if err != nil {
 				return err
 			}
@@ -175,7 +174,7 @@ const (
         ) `
 	sqlCreateRecords string = `
 	    CREATE TABLE IF NOT EXISTS records (
-            Id TEXT
+            ID TEXT
                 CONSTRAINT pk_record_id PRIMARY KEY
                 ON CONFLICT ROLLBACK,
             Begin TEXT,
@@ -188,13 +187,13 @@ const (
         ) `
 	sqlCreateRecordsTags string = `
 	    CREATE TABLE IF NOT EXISTS records_tags (
-            RecordId TEXT
-                CONSTRAINT fk_records_tags_record_id REFERENCES records ( Id )
+            RecordID TEXT
+                CONSTRAINT fk_records_tags_record_id REFERENCES records ( ID )
                 ON DELETE CASCADE ON UPDATE CASCADE ,
             TagName TEXT
                 CONSTRAINT fk_records_tags_tag_name REFERENCES tags ( Name )
                 ON DELETE CASCADE ON UPDATE CASCADE ,
-            CONSTRAINT pk_records_tags_recordid_tagname PRIMARY KEY ( RecordId, TagName )
+            CONSTRAINT pk_records_tags_recordid_tagname PRIMARY KEY ( RecordID, TagName )
                 ON CONFLICT ROLLBACK
         ) `
 
@@ -202,18 +201,18 @@ const (
 	sqlInsertProject string = "INSERT OR IGNORE INTO projects ( Name ) VALUES ( ? )"
 	sqlInsertRecord  string = `
         INSERT OR IGNORE INTO records
-        ( Id, Begin, Duration, DurationString, Project, Notes ) VALUES
+        ( ID, Begin, Duration, DurationString, Project, Notes ) VALUES
         (  ?,     ?,        ?,              ?,       ?,     ? )
     `
 	sqlInsertRecordTag string = `
         INSERT OR IGNORE INTO records_tags
-        ( RecordId, TagName ) VALUES
+        ( RecordID, TagName ) VALUES
         (        ?,       ? )
     `
 
 	sqlSelectRecords string = `
 	    SELECT
-	        R.Id ,
+	        R.ID ,
 	        R.Begin ,
 	        R.Duration ,
 	        R.DurationString ,
@@ -222,7 +221,7 @@ const (
 	        group_concat(RT.TagName) AS Tags
 	    FROM records AS R
 	    LEFT OUTER JOIN projects AS P ON R.Project = P.Name
-	    LEFT OUTER JOIN records_tags AS RT ON RT.RecordId = R.Id
-	    GROUP BY R.Id
+	    LEFT OUTER JOIN records_tags AS RT ON RT.RecordID = R.ID
+	    GROUP BY R.ID
     `
 )

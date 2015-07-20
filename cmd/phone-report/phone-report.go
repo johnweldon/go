@@ -32,11 +32,11 @@ func formatNumber(number string) string {
 func printNumber(number string) {
 	fmt.Fprintf(os.Stdout, "Querying for number '%s' ...    ", number)
 
-	scraper := web.NewWebScraper()
+	scraper := web.NewScraper()
 	scraper.ScrapePredicates = []web.ScrapePredicate{web.HasClass("oos_p6")}
 	scraper.ScrapeAction = web.TextChildren
 	addr := "http://800notes.com/Phone.aspx/" + number
-	s, e := scraper.Scrape(addr)
+	s, e := scraper.Get(addr)
 	if e != nil {
 		fmt.Fprintf(os.Stderr, "Error: %#v\n", e)
 	}
