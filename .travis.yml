@@ -13,7 +13,7 @@ install:
     - go get github.com/mattn/go-sqlite3 || true
     - go get github.com/BurntSushi/toml
     - go get gopkg.in/check.v1
-    - go get gopkg.in/sendgrid/sendgrid-go.v2
+    - go get gopkg.in/sendgrid/sendgrid-go.v2 || true
     - go get gopkg.in/mgo.v2
     - go get launchpad.net/goyaml
     - go get golang.org/x/crypto/bcrypt
