@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"code.google.com/p/go.net/html"
+	"golang.org/x/net/html"
 )
 
 type ScrapeResult interface {

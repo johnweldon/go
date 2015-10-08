@@ -1,7 +1,7 @@
 package util
 
 import (
-	g "code.google.com/p/go-uuid/uuid"
+	g "github.com/pborman/uuid"
 )
 
 type UUID string
