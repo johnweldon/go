@@ -1,0 +1,291 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/BurntSushi/toml",
+			"repository": "https://github.com/BurntSushi/toml",
+			"vcs": "git",
+			"revision": "99064174e013895bbd9b025c31100bd1d9b590ca",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/golang/lint",
+			"repository": "https://github.com/golang/lint",
+			"vcs": "git",
+			"revision": "c7bacac2b21ca01afa1dee0acf64df3ce047c28f",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/pborman/uuid",
+			"repository": "https://github.com/pborman/uuid",
+			"vcs": "git",
+			"revision": "c55201b036063326c5b1b89ccfe45a184973d073",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/sendgrid/smtpapi-go",
+			"repository": "https://github.com/sendgrid/smtpapi-go",
+			"vcs": "git",
+			"revision": "985dfa1c82edb68392be9b89f25b49968e7d3303",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/crypto/bcrypt",
+			"repository": "https://go.googlesource.com/crypto",
+			"vcs": "git",
+			"revision": "911fafb28f4ee7c7bd483539a6c96190bbbccc3f",
+			"branch": "master",
+			"path": "/bcrypt",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/crypto/blowfish",
+			"repository": "https://go.googlesource.com/crypto",
+			"vcs": "git",
+			"revision": "911fafb28f4ee7c7bd483539a6c96190bbbccc3f",
+			"branch": "master",
+			"path": "blowfish",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/net/html",
+			"repository": "https://go.googlesource.com/net",
+			"vcs": "git",
+			"revision": "3797cd8864994d713d909eda5e61ede8683fdc12",
+			"branch": "master",
+			"path": "/html",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/cases",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "cases",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/encoding",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "encoding",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/gen",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/gen",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/tag",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/tag",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/testtext",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/testtext",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/triegen",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/triegen",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/ucd",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/ucd",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/internal/utf8internal",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "internal/utf8internal",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/language",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "language",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/runes",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "runes",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/transform",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "transform",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/unicode/cldr",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "unicode/cldr",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/unicode/norm",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "unicode/norm",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/unicode/rangetable",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "unicode/rangetable",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/text/width",
+			"repository": "https://go.googlesource.com/text",
+			"vcs": "git",
+			"revision": "8552585fc3ce7ff5660cad92f78bda7b4df0c82c",
+			"branch": "master",
+			"path": "width",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/ast/astutil",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "caebc7a51c4e0f3abaf0f13fb8266d6e1a150d58",
+			"branch": "master",
+			"path": "go/ast/astutil",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/buildutil",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "caebc7a51c4e0f3abaf0f13fb8266d6e1a150d58",
+			"branch": "master",
+			"path": "go/buildutil",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/gcimporter15",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "caebc7a51c4e0f3abaf0f13fb8266d6e1a150d58",
+			"branch": "master",
+			"path": "/go/gcimporter15",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/loader",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "caebc7a51c4e0f3abaf0f13fb8266d6e1a150d58",
+			"branch": "master",
+			"path": "go/loader",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/check.v1",
+			"repository": "https://gopkg.in/check.v1",
+			"vcs": "git",
+			"revision": "4f90aeace3a26ad7021961c297b22c42160c7b25",
+			"branch": "v1",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/mgo.v2",
+			"repository": "https://gopkg.in/mgo.v2",
+			"vcs": "git",
+			"revision": "29cc868a5ca65f401ff318143f9408d02f4799cc",
+			"branch": "v2",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/sendgrid/sendgrid-go.v2",
+			"repository": "https://gopkg.in/sendgrid/sendgrid-go.v2",
+			"vcs": "git",
+			"revision": "0bf6332788d0230b7da84a1ae68d7531073200e1",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/tomb.v2",
+			"repository": "https://gopkg.in/tomb.v2",
+			"vcs": "git",
+			"revision": "14b3d72120e8d10ea6e6b7f87f7175734b1faab8",
+			"branch": "v2",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/yaml.v2",
+			"repository": "https://gopkg.in/yaml.v2",
+			"vcs": "git",
+			"revision": "e4d366fc3c7938e2958e662b4258c7a89e1f0e3e",
+			"branch": "v2",
+			"notests": true
+		},
+		{
+			"importpath": "launchpad.net/gocheck",
+			"repository": "https://launchpad.net/gocheck",
+			"vcs": "bzr",
+			"revision": "1",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "launchpad.net/goyaml",
+			"repository": "https://launchpad.net/goyaml",
+			"vcs": "bzr",
+			"revision": "1",
+			"branch": "master",
+			"notests": true
+		}
+	]
+}
