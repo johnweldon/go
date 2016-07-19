@@ -9,7 +9,7 @@ import (
 
 	"launchpad.net/goyaml"
 
-	"github.com/johnweldon/go/util/juju"
+	"github.com/johnweldon/go-misc/util/juju"
 )
 
 var defaultVar = "user"

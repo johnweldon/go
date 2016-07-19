@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/johnweldon/go/web"
+	"github.com/johnweldon/go-misc/web"
 )
 
 type Links struct {

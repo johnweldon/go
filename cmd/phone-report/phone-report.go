@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/johnweldon/go/web"
+	"github.com/johnweldon/go-misc/web"
 )
 
 func main() {

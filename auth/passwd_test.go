@@ -5,7 +5,7 @@ import (
 
 	gc "gopkg.in/check.v1"
 
-	"github.com/johnweldon/go/auth"
+	"github.com/johnweldon/go-misc/auth"
 )
 
 func Test(t *testing.T) { gc.TestingT(t) }

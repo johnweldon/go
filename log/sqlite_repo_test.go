@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/johnweldon/go/log"
+	"github.com/johnweldon/go-misc/log"
 )
 
 const dbpath string = "./test.db"

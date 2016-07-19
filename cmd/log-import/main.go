@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	jlog "github.com/johnweldon/go/log"
+	jlog "github.com/johnweldon/go-misc/log"
 )
 
 var (

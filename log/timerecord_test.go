@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/johnweldon/go/log"
+	"github.com/johnweldon/go-misc/log"
 )
 
 func Test(t *testing.T) {

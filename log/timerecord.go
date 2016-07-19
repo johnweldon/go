@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/johnweldon/go/util"
+	"github.com/johnweldon/go-misc/util"
 )
 
 type TimeRecord struct {

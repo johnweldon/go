@@ -3,7 +3,7 @@ package auth_test
 import (
 	gc "gopkg.in/check.v1"
 
-	"github.com/johnweldon/go/auth"
+	"github.com/johnweldon/go-misc/auth"
 )
 
 type RepoSuite struct{}

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/johnweldon/go/util"
+	"github.com/johnweldon/go-misc/util"
 )
 
 type RelDB struct {
